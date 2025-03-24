@@ -3,13 +3,15 @@ import cors from "cors";
 import dotenv from "dotenv";
 import db from "./utils/db.js";
 import userRoutes from "./routes/user.routes.js";
+import cookieParser from "cookie-parser";
 dotenv.config();
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-const port = process.env.PORT || 4000;
+app.use(cookieParser());
+const port = process.env.PORT; //3000 || 4000;
 const handleCors = {
-  origin: process.env.BASE_URL,
+  origin: process.env.BASE_URL, //http://localhost:8080
   credentials: true,
   methods: ["GET", "POST", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
